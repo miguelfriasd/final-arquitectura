@@ -13,13 +13,11 @@ import java.util.List;
 public class Partida{
     int numJugadores;
     int jugadorActual;
-    Tablero tablero;
     List<Jugador> turnosJugadores;
 
     public Partida(List<Jugador> turnosJugadores) {
         this.numJugadores = turnosJugadores.size();
-        this.tablero = new Tablero(0, 0);
-        this.listaJugadores = turnosJugadores;
+        this.turnosJugadores = turnosJugadores;
         this.jugadorActual = 0;
     }
     
@@ -36,15 +34,11 @@ public class Partida{
     }
 
     public Jugador getJugadorActual() {
-        return jugadorActual;
+        return turnosJugadores.get(jugadorActual);
     }
 
-    public Tablero getTablero() {
-        return tablero;
-    }
-
-    public List<Jugador> getListaJugadores() {
-        return listaJugadores;
+    public List<Jugador> getTurnosJugadores() {
+        return turnosJugadores;
     }
     
 }

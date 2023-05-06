@@ -8,6 +8,7 @@ import Modelo.Jugador;
 import Logica.ControlPartida;
 import Mensaje.Mensaje;
 import Mensaje.MensajeMovimiento;
+import Mensaje.MensajeSalir;
 import Mensaje.MensajeStrategy;
 import Mensaje.MensajeUnirse;
 import java.io.IOException;
@@ -53,21 +54,23 @@ public class ClientHandler implements Runnable{
             mensajeUnirse = recibirMensajeUnirse();
         }
         
-        while (socket.isConnected() && !ControlPartida.partidaEmpezada()) {            
+        while (socket.isConnected() && !ControlPartida.getInstance().partidaEmpezada()) {            
             
         }
         
         while (socket.isConnected()) {            
             try {
                 MensajeStrategy mensaje = (MensajeStrategy)inputStream.readObject();
-                if (mensaje instanceof MensajeMovimiento && ()) {
+                if (mensaje instanceof MensajeMovimiento) {
                     Mensaje contenidoMensaje = mensaje.getMensaje();
-                    String coordenadaX = mensaje.getMensaje().obtenerValor("coordenadaX");
-                    String coordenada
-                    // send acknowledgement back to client
-//                    ProtocoloMensaje.Mensaje acknowledgement = ProtocoloMensaje.createAcknowledgement(true);
-//                    outputStream.writeObject(acknowledgement);
-//                    outputStream.flush();
+                    String coordenadaX = contenidoMensaje.obtenerValor("coordenadaX");
+                    String coordenadaY = contenidoMensaje.obtenerValor("coordenadaY");
+                    String posicion = contenidoMensaje.obtenerValor("posicion");
+                    ControlPartida.getInstance().realizarMovimiento(Integer.parseInt(coordenadaX), Integer.parseInt(coordenadaY), posicion, jugador);
+                }
+                else if (mensaje instanceof MensajeSalir) {
+                    ControlPartida.getInstance().eliminarJugador(jugador);
+                    cerrarTodo();
                 }
             } catch (IOException e) {
                 cerrarTodo();
@@ -78,10 +81,10 @@ public class ClientHandler implements Runnable{
         }
     }
     
-    public void mensajeBroadcast(String mensaje){
+    private void mensajeBroadcast(MensajeStrategy mensaje){
         for(ClientHandler clientHandler : listaClientes){
             try {
-                clientHandler.outputStream.writeObject(this);
+                clientHandler.outputStream.writeObject(mensaje);
                 clientHandler.outputStream.flush();
             } catch (IOException ex) {
                 cerrarTodo();
