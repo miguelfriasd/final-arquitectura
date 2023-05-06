@@ -23,7 +23,7 @@ public class Servidor {
     
     public void arrancarServidor(){
         try {
-            while (!ControlPartida.partidaLlena()){
+            while (!ControlPartida.getInstance().partidaLlena()){
                 Socket socket = socketServidor.accept();
                 ClientHandler clientHandler = new ClientHandler(socket);
                 Thread thread = new Thread(clientHandler);

@@ -77,7 +77,7 @@ public class Tablero {
         System.out.println();
     }
 
-    public boolean colocarLinea(int fila, int col, String linea) {
+    public boolean colocarLinea(int col, int fila, String linea) {
         boolean movimientoValido = false;
         if (fila >=0 && fila < numFilas && col >= 0 && col < numFilas) {
             switch (linea) {
