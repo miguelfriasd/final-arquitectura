@@ -1,0 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
+package Mensaje;
+
+/**
+ *
+ * @author mig_2
+ */
+public interface MensajeStrategy {
+    
+    public Mensaje getMensaje();
+    
+}
