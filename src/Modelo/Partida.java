@@ -14,12 +14,12 @@ public class Partida{
     int numJugadores;
     int jugadorActual;
     Tablero tablero;
-    List<Jugador> listaJugadores;
+    List<Jugador> turnosJugadores;
 
-    public Partida(List<Jugador> listaJugadores) {
-        this.numJugadores = listaJugadores.size();
+    public Partida(List<Jugador> turnosJugadores) {
+        this.numJugadores = turnosJugadores.size();
         this.tablero = new Tablero(0, 0);
-        this.listaJugadores = listaJugadores;
+        this.listaJugadores = turnosJugadores;
         this.jugadorActual = 0;
     }
     
@@ -35,7 +35,7 @@ public class Partida{
         return numJugadores;
     }
 
-    public int getJugadorActual() {
+    public Jugador getJugadorActual() {
         return jugadorActual;
     }
 

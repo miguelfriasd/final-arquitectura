@@ -54,16 +54,16 @@ public class ClientHandler implements Runnable{
         }
         
         while (socket.isConnected() && !ControlPartida.partidaEmpezada()) {            
-
+            
         }
         
         while (socket.isConnected()) {            
             try {
                 MensajeStrategy mensaje = (MensajeStrategy)inputStream.readObject();
-                if (mensaje instanceof MensajeMovimiento) {
+                if (mensaje instanceof MensajeMovimiento && ()) {
                     Mensaje contenidoMensaje = mensaje.getMensaje();
-                    
-
+                    String coordenadaX = mensaje.getMensaje().obtenerValor("coordenadaX");
+                    String coordenada
                     // send acknowledgement back to client
 //                    ProtocoloMensaje.Mensaje acknowledgement = ProtocoloMensaje.createAcknowledgement(true);
 //                    outputStream.writeObject(acknowledgement);

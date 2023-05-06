@@ -69,4 +69,11 @@ public class ControlPartida {
         return false;
     }
     
+    public Jugador obtenerTurno(){
+        if (partidaEmpezada) {
+            return partida.getJugadorActual();
+        }
+        throw new IllegalCallerException();
+    }
+    
 }
