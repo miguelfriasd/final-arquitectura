@@ -4,10 +4,18 @@
  */
 package Mensaje;
 
+import java.io.Serializable;
+
 /**
  *
  * @author mig_2
  */
-public class MensajeSalir {
+public class MensajeSalir implements MensajeStrategy, Serializable{
+
+    
+    @Override
+    public Mensaje getMensaje() {
+        return new Mensaje();
+    }
     
 }

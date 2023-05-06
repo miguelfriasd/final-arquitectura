@@ -6,6 +6,7 @@ package Logica;
 
 import Modelo.Jugador;
 import Modelo.Partida;
+import Modelo.Tablero;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +16,12 @@ import java.util.List;
  */
 public class ControlPartida {
     
-    private static Partida partida;
-    private static boolean partidaEmpezada;
-    private static int numJugadoresActual;
-    private static final int NUM_JUGADORES_MAXIMO = 4;
-    private static List<Jugador> listaJugadores;
+    private Partida partida;
+    private Tablero tablero;
+    private boolean partidaEmpezada;
+    private int numJugadoresActual;
+    private final int NUM_JUGADORES_MAXIMO = 4;
+    private List<Jugador> listaJugadores;
     private static ControlPartida instancia;
     
     
@@ -33,21 +35,18 @@ public class ControlPartida {
         return (instancia == null) ? new ControlPartida() : instancia;
     }
     
-    public void realizarMovimiento(String movimiento){
-        if (partidaEmpezada) {
-            
+    public synchronized boolean realizarMovimiento(int coordenadaX, int coordenadaY, String posicion, Jugador jugador){
+        if (partidaEmpezada && partida.getJugadorActual() == jugador) {
+            return tablero.colocarLinea(coordenadaX, coordenadaY, posicion);
         }
+        return false;
     }
     
-    private boolean movimientoValido(String mensaje){
-        return true;
-    }
-    
-    public static boolean partidaLlena(){
+    public boolean partidaLlena(){
         return numJugadoresActual == NUM_JUGADORES_MAXIMO;
     }
     
-    public static boolean partidaEmpezada(){
+    public boolean partidaEmpezada(){
         return partidaEmpezada;
     }
     
@@ -60,20 +59,26 @@ public class ControlPartida {
         return false;
     }
     
-    public boolean iniciarPartida(){
+    public boolean empezarPartida(){
         if (!partidaEmpezada && (numJugadoresActual > 0)) {
             partida = new Partida(listaJugadores);
+            tablero = new Tablero(numJugadoresActual*10 , numJugadoresActual*10);
             partidaEmpezada = true;
             return true;
         }
         return false;
     }
     
-    public Jugador obtenerTurno(){
+    public synchronized Jugador obtenerJugadorActual(){
         if (partidaEmpezada) {
             return partida.getJugadorActual();
         }
         throw new IllegalCallerException();
+    }
+    
+    public void eliminarJugador(Jugador jugador){
+        partida.getTurnosJugadores().remove(jugador);
+        this.listaJugadores.remove(jugador);
     }
     
 }
