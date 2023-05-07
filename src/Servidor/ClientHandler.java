@@ -50,15 +50,15 @@ public class ClientHandler implements Runnable{
     public void run() {
         MensajeUnirse mensajeUnirse = null;
         
-        while (socket.isConnected() && mensajeUnirse == null) {            
+        while (socket.isConnected() && mensajeUnirse == null && !ControlPartida.getInstance().partidaEmpezada()) {                
             mensajeUnirse = recibirMensajeUnirse();
         }
         
-        while (socket.isConnected() && !ControlPartida.getInstance().partidaEmpezada()) {            
-            
+        if (ControlPartida.getInstance().partidaEmpezada() && mensajeUnirse == null || !socket.isConnected()) {
+            cerrarTodo();
         }
         
-        while (socket.isConnected()) {            
+        while (socket.isConnected() && ControlPartida.getInstance().partidaEmpezada()) {                
             try {
                 MensajeStrategy mensaje = (MensajeStrategy)inputStream.readObject();
                 if (mensaje instanceof MensajeMovimiento) {
@@ -67,6 +67,7 @@ public class ClientHandler implements Runnable{
                     String coordenadaY = contenidoMensaje.obtenerValor("coordenadaY");
                     String posicion = contenidoMensaje.obtenerValor("posicion");
                     ControlPartida.getInstance().realizarMovimiento(Integer.parseInt(coordenadaX), Integer.parseInt(coordenadaY), posicion, jugador);
+                    mensajeBroadcast(mensaje);
                 }
                 else if (mensaje instanceof MensajeSalir) {
                     ControlPartida.getInstance().eliminarJugador(jugador);
@@ -79,6 +80,8 @@ public class ClientHandler implements Runnable{
                 Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        cerrarTodo();
     }
     
     private void mensajeBroadcast(MensajeStrategy mensaje){
