@@ -32,7 +32,7 @@ public class ControlPartida {
     }
     
     public static ControlPartida getInstance(){
-        return (instancia == null) ? new ControlPartida() : instancia;
+        return (instancia == null) ? (instancia = new ControlPartida()) : instancia;
     }
     
     public synchronized boolean realizarMovimiento(int coordenadaX, int coordenadaY, String posicion, Jugador jugador){
@@ -42,15 +42,15 @@ public class ControlPartida {
         return false;
     }
     
-    public boolean partidaLlena(){
+    public synchronized boolean partidaLlena(){
         return numJugadoresActual == NUM_JUGADORES_MAXIMO;
     }
     
-    public boolean partidaEmpezada(){
+    public synchronized boolean partidaEmpezada(){
         return partidaEmpezada;
     }
     
-    public boolean agregarJugador(Jugador jugador){
+    public synchronized boolean agregarJugador(Jugador jugador){
         if (numJugadoresActual < NUM_JUGADORES_MAXIMO) {
             listaJugadores.add(jugador);
             numJugadoresActual++;
