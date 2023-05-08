@@ -31,11 +31,13 @@ public class ClientHandler implements Runnable{
     private ObjectOutputStream outputStream;
     private ObjectInputStream inputStream;
     private Jugador jugador;
+    private ControlPartida controlPartida;
 
 
-    public ClientHandler(Socket socket) {
+    public ClientHandler(Socket socket, ControlPartida controlPartida) {
         try{
             this.socket=socket;
+            this.controlPartida =controlPartida;
             this.outputStream = new ObjectOutputStream(socket.getOutputStream());
             this.inputStream = new ObjectInputStream(socket.getInputStream());
             if (listaClientes==null) {
@@ -46,14 +48,12 @@ public class ClientHandler implements Runnable{
        
         }
     }
-
-    
     
     @Override
     public void run(){   
         MensajeUnirse mensajeUnirse = null;
                
-        while (socket.isConnected() && mensajeUnirse == null && !ControlPartida.getInstance().partidaEmpezada()) {
+        while (socket.isConnected() && mensajeUnirse == null && !controlPartida.partidaEmpezada()) {
             mensajeUnirse = recibirMensajeUnirse();
             if (mensajeUnirse == null) {
                 System.out.println("Mensaje nulo");
@@ -62,22 +62,22 @@ public class ClientHandler implements Runnable{
         
         System.out.println("Jugador unido");
         
-        if (ControlPartida.getInstance().partidaEmpezada() && mensajeUnirse == null || !socket.isConnected()) {
+        if (controlPartida.partidaEmpezada() && mensajeUnirse == null || !socket.isConnected()) {
             cerrarTodo();
         }
         
-        while (socket.isConnected() && ControlPartida.getInstance().partidaEmpezada()) {                
+        while (socket.isConnected() && controlPartida.partidaEmpezada()) {                
             try {
                 MensajeStrategy mensaje = (MensajeStrategy)inputStream.readObject();
                 if (mensaje instanceof MensajeMovimiento) {
                     String coordenadaX = mensaje.obtenerValor("coordenadaX");
                     String coordenadaY = mensaje.obtenerValor("coordenadaY");
                     String posicion = mensaje.obtenerValor("posicion");
-                    ControlPartida.getInstance().realizarMovimiento(Integer.parseInt(coordenadaX), Integer.parseInt(coordenadaY), posicion, jugador);
+                    controlPartida.realizarMovimiento(Integer.parseInt(coordenadaX), Integer.parseInt(coordenadaY), posicion, jugador);
                     mensajeBroadcast(mensaje);
                 }
                 else if (mensaje instanceof MensajeSalir) {
-                    ControlPartida.getInstance().eliminarJugador(jugador);
+                    controlPartida.eliminarJugador(jugador);
                     cerrarTodo();
                 }
             } catch (IOException e) {
@@ -130,7 +130,7 @@ public class ClientHandler implements Runnable{
             String nombreJugador = mensajeRecibido.obtenerValor("nombre");
             InetAddress ipJugador = socket.getInetAddress();
             jugador = new Jugador(nombreJugador, ipJugador); 
-            ControlPartida.getInstance().agregarJugador(jugador);
+            controlPartida.agregarJugador(jugador);
             return mensajeRecibido;
         } catch (IOException ex) {
             cerrarTodo();

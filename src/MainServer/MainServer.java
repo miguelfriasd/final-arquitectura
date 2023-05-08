@@ -4,6 +4,7 @@
  */
 package MainServer;
 
+import Servidor.Servidor;
 import Servidor.ServidorThread;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -21,7 +22,7 @@ public class MainServer {
      */
     public static void main(String[] args) {
         try {
-            ServidorThread servidor = new ServidorThread(new ServerSocket(1234));
+            Servidor servidor = new Servidor(new ServerSocket(1234));
             servidor.arrancarServidor();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

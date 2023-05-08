@@ -22,17 +22,12 @@ public class ControlPartida {
     private int numJugadoresActual;
     private final int NUM_JUGADORES_MAXIMO = 4;
     private List<Jugador> listaJugadores;
-    private static ControlPartida instancia;
     
     
-    private ControlPartida() {
+    public ControlPartida() {
         numJugadoresActual = 0;
         partidaEmpezada = false;
         listaJugadores = new ArrayList<>();
-    }
-    
-    public static ControlPartida getInstance(){
-        return (instancia == null) ? (instancia = new ControlPartida()) : instancia;
     }
     
     public synchronized boolean realizarMovimiento(int coordenadaX, int coordenadaY, String posicion, Jugador jugador){
