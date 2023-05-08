@@ -22,12 +22,8 @@ public class ContextoPartida {
     private boolean partidaEmpezada;
     private Client client;
     
-    private ContextoPartida(){
+    public ContextoPartida(){
         partidaEmpezada = false;
-    }
-    
-    public static ContextoPartida getInstance(){
-        return (instance == null)? (instance = new ContextoPartida()) : instance;
     }
     
     public void setPartidaEmpezada(){
