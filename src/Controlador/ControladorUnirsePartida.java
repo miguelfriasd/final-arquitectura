@@ -18,10 +18,12 @@ import java.io.IOException;
 public class ControladorUnirsePartida {
     
     FrmUnirsePartida frmUnirsePartida;
+    private final ContextoPartida contextoPartida;
     
 
-    public ControladorUnirsePartida(FrmUnirsePartida frmUnirsePartida) {
+    public ControladorUnirsePartida(FrmUnirsePartida frmUnirsePartida, ContextoPartida contextoPartida) {
         this.frmUnirsePartida = frmUnirsePartida;
+        this.contextoPartida = contextoPartida;
         
         frmUnirsePartida.agregarUnirsePartidaListener(new UnirsePartidaListener());
     }
@@ -37,8 +39,8 @@ public class ControladorUnirsePartida {
             try{
                 codigoPartida = frmUnirsePartida.getCodigoPartida();
                 nombre = frmUnirsePartida.getNombre();
-                ContextoPartida.getInstance().initCliente(Integer.parseInt(codigoPartida));
-                ContextoPartida.getInstance().enviarMensajeUnirsePartida(nombre);
+                contextoPartida.initCliente(Integer.parseInt(codigoPartida));
+                contextoPartida.enviarMensajeUnirsePartida(nombre);
             } catch (IOException ex ) {
                 frmUnirsePartida.mostrarMensajeError(ex.getMessage());
             }

@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import EstadoPartida.ContextoPartida;
 import Vista.FrmMain;
 import Vista.FrmUnirsePartida;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ import java.awt.event.ActionListener;
  */
 public class ControladorMain {
     private FrmMain FrmMain;
+    private ContextoPartida contextoPartida;
 
     public ControladorMain(FrmMain FrmMain) {
         this.FrmMain = FrmMain;
@@ -28,7 +30,7 @@ public class ControladorMain {
         public void actionPerformed(ActionEvent e) {
             FrmMain.dispose();
             FrmUnirsePartida frmUnirsePartida = new FrmUnirsePartida();
-            ControladorUnirsePartida controladorUnirsePartida = new ControladorUnirsePartida(frmUnirsePartida);
+            ControladorUnirsePartida controladorUnirsePartida = new ControladorUnirsePartida(frmUnirsePartida,new ContextoPartida());
             frmUnirsePartida.setVisible(true);
         }
 
