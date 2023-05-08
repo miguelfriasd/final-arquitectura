@@ -10,6 +10,6 @@ package Mensaje;
  */
 public interface MensajeStrategy {
     
-    public Mensaje getMensaje();
+    public String obtenerValor(String llave);
     
 }

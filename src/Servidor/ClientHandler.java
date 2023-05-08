@@ -6,7 +6,6 @@ package Servidor;
 
 import Modelo.Jugador;
 import Logica.ControlPartida;
-import Mensaje.Mensaje;
 import Mensaje.MensajeMovimiento;
 import Mensaje.MensajeSalir;
 import Mensaje.MensajeStrategy;
@@ -71,10 +70,9 @@ public class ClientHandler implements Runnable{
             try {
                 MensajeStrategy mensaje = (MensajeStrategy)inputStream.readObject();
                 if (mensaje instanceof MensajeMovimiento) {
-                    Mensaje contenidoMensaje = mensaje.getMensaje();
-                    String coordenadaX = contenidoMensaje.obtenerValor("coordenadaX");
-                    String coordenadaY = contenidoMensaje.obtenerValor("coordenadaY");
-                    String posicion = contenidoMensaje.obtenerValor("posicion");
+                    String coordenadaX = mensaje.obtenerValor("coordenadaX");
+                    String coordenadaY = mensaje.obtenerValor("coordenadaY");
+                    String posicion = mensaje.obtenerValor("posicion");
                     ControlPartida.getInstance().realizarMovimiento(Integer.parseInt(coordenadaX), Integer.parseInt(coordenadaY), posicion, jugador);
                     mensajeBroadcast(mensaje);
                 }
@@ -129,7 +127,7 @@ public class ClientHandler implements Runnable{
     private MensajeUnirse recibirMensajeUnirse(){
         try{
             MensajeUnirse mensajeRecibido = (MensajeUnirse)inputStream.readObject();
-            String nombreJugador = mensajeRecibido.getMensaje().obtenerValor("nombre");
+            String nombreJugador = mensajeRecibido.obtenerValor("nombre");
             InetAddress ipJugador = socket.getInetAddress();
             jugador = new Jugador(nombreJugador, ipJugador); 
             ControlPartida.getInstance().agregarJugador(jugador);
