@@ -6,6 +6,7 @@ package EstadoPartida;
 
 import Cliente.Client;
 import Mensaje.MensajeMovimiento;
+import Mensaje.MensajeUnirse;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.LinkedList;
@@ -15,18 +16,18 @@ import java.util.List;
  *
  * @author mig_2
  */
-public class EstadoPartida {
-    private static EstadoPartida instance;
+public class ContextoPartida {
+    private static ContextoPartida instance;
     private List<MensajeMovimiento> listaMensajes;
     private boolean partidaEmpezada;
     private Client client;
     
-    private EstadoPartida(){
+    private ContextoPartida(){
         partidaEmpezada = false;
     }
     
-    public static EstadoPartida getInstance(){
-        return (instance == null)? (instance = new EstadoPartida()) : instance;
+    public static ContextoPartida getInstance(){
+        return (instance == null)? (instance = new ContextoPartida()) : instance;
     }
     
     public void setPartidaEmpezada(){
@@ -35,7 +36,13 @@ public class EstadoPartida {
     }
     
     public void initCliente(int puerto) throws IOException{
-        this.client = new Client(new Socket("", puerto));
+        if (client==null) {
+            this.client = new Client(new Socket("", puerto));
+        }
+    }
+    
+    public void enviarMensajeUnirsePartida(String nombre){
+        client.mandarMensaje(new MensajeUnirse(nombre));
     }
     
     public void agregarMovimiento(MensajeMovimiento mensajeMovimiento){
@@ -44,7 +51,7 @@ public class EstadoPartida {
         }
     }
     
-    public void resetEstado(){
+    public void resetContextoPartia(){
         instance = null;
     }
 }

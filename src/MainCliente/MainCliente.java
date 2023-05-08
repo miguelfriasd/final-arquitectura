@@ -21,5 +21,4 @@ public class MainCliente {
         ControladorMain controladorMain = new ControladorMain(mainFrame);
         mainFrame.setVisible(true);
     }
-    
 }

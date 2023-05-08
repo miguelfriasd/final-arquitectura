@@ -39,8 +39,7 @@ public class Client {
             outputStream.flush();
         } catch (IOException ex) {
             cerrarTodo();
-        }
-        
+        }  
     }
     
     public void listenerMensajes(){

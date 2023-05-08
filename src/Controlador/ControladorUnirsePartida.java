@@ -4,9 +4,7 @@
  */
 package Controlador;
 
-import Cliente.Client;
-import EstadoPartida.EstadoPartida;
-import Logica.ControlPartida;
+import EstadoPartida.ContextoPartida;
 import Vista.FrmUnirsePartida;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,11 +32,13 @@ public class ControladorUnirsePartida {
         public void actionPerformed(ActionEvent e) {
 
             String codigoPartida;
+            String nombre;
 
             try{
                 codigoPartida = frmUnirsePartida.getCodigoPartida();
-                EstadoPartida.getInstance().initCliente(Integer.parseInt(codigoPartida));
-                
+                nombre = frmUnirsePartida.getNombre();
+                ContextoPartida.getInstance().initCliente(Integer.parseInt(codigoPartida));
+                ContextoPartida.getInstance().enviarMensajeUnirsePartida(nombre);
             } catch (IOException ex ) {
                 frmUnirsePartida.mostrarMensajeError(ex.getMessage());
             }

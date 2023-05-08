@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/mig_2/Downloads/Documents/ITSON/EneroMayo2023/ArquitecturadeSoftware/Codigo/FinalArquitectura/src/Logica/ControlPartida.java</file>
+            <file>file:/C:/Users/mig_2/Downloads/Documents/ITSON/EneroMayo2023/ArquitecturadeSoftware/Codigo/FinalArquitectura/src/Mensaje/Mensaje.java</file>
+            <file>file:/C:/Users/mig_2/Downloads/Documents/ITSON/EneroMayo2023/ArquitecturadeSoftware/Codigo/FinalArquitectura/src/EstadoPartida/ContextoPartida.java</file>
+            <file>file:/C:/Users/mig_2/Downloads/Documents/ITSON/EneroMayo2023/ArquitecturadeSoftware/Codigo/FinalArquitectura/src/MainCliente/MainCliente.java</file>
+            <file>file:/C:/Users/mig_2/Downloads/Documents/ITSON/EneroMayo2023/ArquitecturadeSoftware/Codigo/FinalArquitectura/src/Vista/FrmUnirsePartida.java</file>
+            <file>file:/C:/Users/mig_2/Downloads/Documents/ITSON/EneroMayo2023/ArquitecturadeSoftware/Codigo/FinalArquitectura/src/Cliente/Client.java</file>
+            <file>file:/C:/Users/mig_2/Downloads/Documents/ITSON/EneroMayo2023/ArquitecturadeSoftware/Codigo/FinalArquitectura/src/MainCliente/PruebasCliente.java</file>
+            <file>file:/C:/Users/mig_2/Downloads/Documents/ITSON/EneroMayo2023/ArquitecturadeSoftware/Codigo/FinalArquitectura/src/Servidor/ClientHandler.java</file>
+            <file>file:/C:/Users/mig_2/Downloads/Documents/ITSON/EneroMayo2023/ArquitecturadeSoftware/Codigo/FinalArquitectura/src/Servidor/Servidor.java</file>
+            <file>file:/C:/Users/mig_2/Downloads/Documents/ITSON/EneroMayo2023/ArquitecturadeSoftware/Codigo/FinalArquitectura/src/Modelo/Main.java</file>
+            <file>file:/C:/Users/mig_2/Downloads/Documents/ITSON/EneroMayo2023/ArquitecturadeSoftware/Codigo/FinalArquitectura/src/MainServer/MainServer.java</file>
+        </group>
     </open-files>
 </project-private>
