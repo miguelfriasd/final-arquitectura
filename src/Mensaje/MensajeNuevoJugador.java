@@ -5,22 +5,23 @@
 package Mensaje;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  *
  * @author mig_2
  */
 public class MensajeNuevoJugador implements MensajeStrategy, Serializable{
-    Mensaje mensaje;
+    HashMap<String, String> mensaje;
     
     public MensajeNuevoJugador(String nombre) {
-        mensaje = new Mensaje();
-        mensaje.agregarPar("jugador", nombre);
+        mensaje = new HashMap<>();
+        mensaje.put("jugador", nombre);
 
     } 
-    
+
     @Override
-    public Mensaje getMensaje() {
-        return mensaje;
+    public String obtenerValor(String llave) {
+        return mensaje.get(llave);
     }
 }

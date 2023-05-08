@@ -4,7 +4,7 @@
  */
 package MainServer;
 
-import Servidor.Servidor;
+import Servidor.ServidorThread;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.logging.Level;
@@ -21,7 +21,7 @@ public class MainServer {
      */
     public static void main(String[] args) {
         try {
-            Servidor servidor = new Servidor(new ServerSocket(1234));
+            ServidorThread servidor = new ServidorThread(new ServerSocket(1234));
             servidor.arrancarServidor();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

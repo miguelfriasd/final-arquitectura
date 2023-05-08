@@ -5,22 +5,24 @@
 package Mensaje;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  *
  * @author mig_2
  */
 public class MensajeAgregarPuntuacion implements Serializable, MensajeStrategy{
-    Mensaje mensaje;
+    HashMap<String, String> mensaje;
     
     public MensajeAgregarPuntuacion(String nombre, String puntuacion) {
-        mensaje = new Mensaje();
-        mensaje.agregarPar("nombre", nombre);
-        mensaje.agregarPar("puntuacion", puntuacion);
+        mensaje = new HashMap<>();
+        mensaje.put("nombre", nombre);
+        mensaje.put("puntuacion", puntuacion);
+    }
+
+    @Override
+    public String obtenerValor(String llave) {
+        return mensaje.get(llave);
     }
     
-    @Override
-    public Mensaje getMensaje() {
-        return mensaje;
-    }
 }
