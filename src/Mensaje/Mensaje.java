@@ -4,6 +4,7 @@
  */
 package Mensaje;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ import java.util.Map;
  *
  * @author mig_2
  */
-public class Mensaje {
+public class Mensaje implements Serializable{
     private final Map<String,String> valoresMensaje;
 
     public Mensaje(){
@@ -19,11 +20,11 @@ public class Mensaje {
     }
     
     public void agregarPar(String llave, String valor){
-        valoresMensaje.put(valor, valor);
+        valoresMensaje.put(llave, valor);
     }
     
-    public String obtenerValor(String valor){
-        return valoresMensaje.get(valor);
+    public String obtenerValor(String llave){
+        return valoresMensaje.get(llave);
     }
     
 }

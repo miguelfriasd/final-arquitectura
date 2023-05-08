@@ -32,6 +32,8 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
         txtCodigoPartida = new javax.swing.JTextField();
         lblCodigoPartida = new javax.swing.JLabel();
         btnUnirse = new javax.swing.JButton();
+        txtNombre = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,31 +41,40 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
 
         btnUnirse.setText("Unirse");
 
+        lblNombre.setText("Nombre");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblCodigoPartida)
-                    .addComponent(txtCodigoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(84, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnUnirse)
-                .addGap(162, 162, 162))
+                .addContainerGap(93, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNombre)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblCodigoPartida)
+                        .addComponent(txtCodigoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUnirse)
+                            .addGap(78, 78, 78))))
+                .addGap(87, 87, 87))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(103, 103, 103)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addComponent(lblNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCodigoPartida)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCodigoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnUnirse)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addGap(48, 48, 48))
         );
 
         pack();
@@ -71,6 +82,10 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
     
         public String getCodigoPartida(){
             return txtCodigoPartida.getText();
+        }
+        
+        public String getNombre(){
+            return txtNombre.getText();
         }
     
     	public void agregarUnirsePartidaListener(ActionListener listenUnirsePartida){
@@ -84,6 +99,8 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUnirse;
     private javax.swing.JLabel lblCodigoPartida;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtCodigoPartida;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

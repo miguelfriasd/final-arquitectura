@@ -17,6 +17,7 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,10 +27,10 @@ import java.util.logging.Logger;
  */
 public class ClientHandler implements Runnable{
     
-    private static ArrayList<ClientHandler> listaClientes;
+    private static List<ClientHandler> listaClientes;
     private Socket socket;
-    private ObjectInputStream inputStream;
     private ObjectOutputStream outputStream;
+    private ObjectInputStream inputStream;
     private Jugador jugador;
 
 
@@ -38,6 +39,9 @@ public class ClientHandler implements Runnable{
             this.socket=socket;
             this.outputStream = new ObjectOutputStream(socket.getOutputStream());
             this.inputStream = new ObjectInputStream(socket.getInputStream());
+            if (listaClientes==null) {
+                listaClientes = new ArrayList<>();
+            }
             listaClientes.add(this);
         } catch(IOException e){
        
@@ -47,12 +51,17 @@ public class ClientHandler implements Runnable{
     
     
     @Override
-    public void run() {
+    public void run(){   
         MensajeUnirse mensajeUnirse = null;
-        
-        while (socket.isConnected() && mensajeUnirse == null && !ControlPartida.getInstance().partidaEmpezada()) {                
+               
+        while (socket.isConnected() && mensajeUnirse == null && !ControlPartida.getInstance().partidaEmpezada()) {
             mensajeUnirse = recibirMensajeUnirse();
+            if (mensajeUnirse == null) {
+                System.out.println("Mensaje nulo");
+            }
         }
+        
+        System.out.println("Jugador unido");
         
         if (ControlPartida.getInstance().partidaEmpezada() && mensajeUnirse == null || !socket.isConnected()) {
             cerrarTodo();
@@ -118,7 +127,7 @@ public class ClientHandler implements Runnable{
     
     
     private MensajeUnirse recibirMensajeUnirse(){
-        try {
+        try{
             MensajeUnirse mensajeRecibido = (MensajeUnirse)inputStream.readObject();
             String nombreJugador = mensajeRecibido.getMensaje().obtenerValor("nombre");
             InetAddress ipJugador = socket.getInetAddress();
