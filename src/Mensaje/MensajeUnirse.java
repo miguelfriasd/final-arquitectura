@@ -5,25 +5,28 @@
 package Mensaje;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  *
  * @author mig_2
  */
 public class MensajeUnirse implements Serializable, MensajeStrategy{
-
-    Mensaje mensaje;
+    
+    HashMap<String, String> mensaje;
 
     public MensajeUnirse(String nombreUsuario){
-        mensaje = new Mensaje();
-        mensaje.agregarPar("nombre", nombreUsuario);
+        mensaje = new HashMap<>();
+        mensaje.put("nombre",  nombreUsuario);
     }
-    
-    
-    
+
     @Override
-    public Mensaje getMensaje() {
-        return mensaje;
+    public String obtenerValor(String llave) {
+        return mensaje.get(llave);
     }
+    
+    
+    
+
     
 }

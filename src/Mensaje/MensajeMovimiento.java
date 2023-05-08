@@ -4,6 +4,7 @@
  */
 package Mensaje;
 import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  *
@@ -11,18 +12,18 @@ import java.io.Serializable;
  */
 public class MensajeMovimiento implements MensajeStrategy, Serializable{
 
-    Mensaje mensaje;
+    HashMap<String, String> mensaje;
     
     public MensajeMovimiento(String coordenadaX, String coordenadaY, String posicion) {
-        mensaje = new Mensaje();
-        mensaje.agregarPar("x", coordenadaX);
-        mensaje.agregarPar("y", coordenadaY);
-        mensaje.agregarPar("posicion", posicion);
+        mensaje = new HashMap<>();
+        mensaje.put("x", coordenadaX);
+        mensaje.put("y", coordenadaY);
+        mensaje.put("posicion", posicion);
     }
-    
+
     @Override
-    public Mensaje getMensaje() {
-        return mensaje;
+    public String obtenerValor(String llave) {
+        return mensaje.get(llave);
     }
   
 }
