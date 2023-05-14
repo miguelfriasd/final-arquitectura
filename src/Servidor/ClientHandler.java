@@ -17,6 +17,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,7 +25,7 @@ import java.util.logging.Logger;
  *
  * @author mig_2
  */
-public class ClientHandler implements Runnable{
+public class ClientHandler implements Runnable, IObserver{
     
     private static List<ClientHandler> listaClientes;
     private Socket socket;
@@ -52,42 +53,45 @@ public class ClientHandler implements Runnable{
     @Override
     public void run(){   
         MensajeUnirse mensajeUnirse = null;
-               
+        
         while (socket.isConnected() && mensajeUnirse == null && !controlPartida.partidaEmpezada()) {
-            mensajeUnirse = recibirMensajeUnirse();
-            if (mensajeUnirse == null) {
-                System.out.println("Mensaje nulo");
-            }
-        }
-        
-        System.out.println("Jugador unido");
-        
-        if (controlPartida.partidaEmpezada() && mensajeUnirse == null || !socket.isConnected()) {
-            cerrarTodo();
-        }
-        
-        while (socket.isConnected() && controlPartida.partidaEmpezada()) {                
             try {
-                MensajeStrategy mensaje = (MensajeStrategy)inputStream.readObject();
-                if (mensaje instanceof MensajeMovimiento) {
-                    String coordenadaX = mensaje.obtenerValor("coordenadaX");
-                    String coordenadaY = mensaje.obtenerValor("coordenadaY");
-                    String posicion = mensaje.obtenerValor("posicion");
-                    controlPartida.realizarMovimiento(Integer.parseInt(coordenadaX), Integer.parseInt(coordenadaY), posicion, jugador);
-                    mensajeBroadcast(mensaje);
-                }
-                else if (mensaje instanceof MensajeSalir) {
-                    controlPartida.eliminarJugador(jugador);
-                    cerrarTodo();
-                }
-            } catch (IOException e) {
+                mensajeUnirse = (MensajeUnirse)inputStream.readObject();
+            } catch (IOException | ClassNotFoundException ex) {
                 cerrarTodo();
-                break;
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (mensajeUnirse != null) {
+                procesarMensajeUnirse(mensajeUnirse);
             }
         }
         
+        synchronized (this) {          
+            if (!controlPartida.partidaEmpezada()) {
+                try {
+                    wait();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else{
+                notifyAll();            
+            }
+        }
+        
+        while (socket.isConnected() && controlPartida.partidaEmpezada()) {
+            MensajeStrategy mensaje;
+            try {
+                mensaje = (MensajeStrategy)inputStream.readObject();
+                if (mensaje instanceof MensajeMovimiento && controlPartida.obtenerJugadorActual() == this.jugador) {
+                    int coordenadaX = Integer.parseInt(mensaje.obtenerValor("coordenadaX"));
+                    int coordenadaY = Integer.parseInt(mensaje.obtenerValor("coordenadaY"));
+                    String posicion = mensaje.obtenerValor("posicion");
+                    controlPartida.realizarMovimiento(coordenadaX, coordenadaY, posicion, jugador);
+                }                            
+            } catch (IOException | ClassNotFoundException ex) {
+                cerrarTodo();
+            }
+        }
         cerrarTodo();
     }
     
@@ -124,19 +128,20 @@ public class ClientHandler implements Runnable{
     }
     
     
-    private MensajeUnirse recibirMensajeUnirse(){
-        try{
-            MensajeUnirse mensajeRecibido = (MensajeUnirse)inputStream.readObject();
-            String nombreJugador = mensajeRecibido.obtenerValor("nombre");
-            InetAddress ipJugador = socket.getInetAddress();
-            jugador = new Jugador(nombreJugador, ipJugador); 
-            controlPartida.agregarJugador(jugador);
-            return mensajeRecibido;
-        } catch (IOException ex) {
-            cerrarTodo();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+    private void procesarMensajeUnirse(MensajeUnirse mensajeUnirse){
+        String nombreJugador = mensajeUnirse.obtenerValor("nombre");
+        InetAddress ipJugador = socket.getInetAddress();
+        jugador = new Jugador(nombreJugador, ipJugador); 
+        controlPartida.agregarJugador(jugador);
+    }
+
+    @Override
+    public void update(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void delete() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

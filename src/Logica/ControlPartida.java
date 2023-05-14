@@ -20,8 +20,8 @@ public class ControlPartida {
     private Tablero tablero;
     private boolean partidaEmpezada;
     private int numJugadoresActual;
-    private final int NUM_JUGADORES_MAXIMO = 4;
-    private List<Jugador> listaJugadores;
+    private final int NUM_JUGADORES_MAXIMO = 2;
+    private final List<Jugador> listaJugadores;
     
     
     public ControlPartida() {
@@ -49,12 +49,16 @@ public class ControlPartida {
         if (numJugadoresActual < NUM_JUGADORES_MAXIMO) {
             listaJugadores.add(jugador);
             numJugadoresActual++;
+            if (numJugadoresActual == NUM_JUGADORES_MAXIMO) {
+                empezarPartida();
+            }
             return true;
         }
+
         return false;
     }
     
-    public boolean empezarPartida(){
+    private boolean empezarPartida(){
         if (!partidaEmpezada && (numJugadoresActual > 0)) {
             partida = new Partida(listaJugadores);
             tablero = new Tablero(numJugadoresActual*10 , numJugadoresActual*10);

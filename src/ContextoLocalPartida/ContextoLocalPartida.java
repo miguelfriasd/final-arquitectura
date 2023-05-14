@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package EstadoPartida;
+package ContextoLocalPartida;
 
 import Cliente.Client;
 import Mensaje.MensajeMovimiento;
@@ -16,13 +16,11 @@ import java.util.List;
  *
  * @author mig_2
  */
-public class ContextoPartida {
-    private static ContextoPartida instance;
+public class ContextoLocalPartida {
     private List<MensajeMovimiento> listaMensajes;
     private boolean partidaEmpezada;
-    private Client client;
     
-    public ContextoPartida(){
+    public ContextoLocalPartida(){
         partidaEmpezada = false;
     }
     
@@ -31,23 +29,13 @@ public class ContextoPartida {
         listaMensajes = new LinkedList<>();
     }
     
-    public void initCliente(int puerto) throws IOException{
-        if (client==null) {
-            this.client = new Client(new Socket("", puerto));
-        }
-    }
-    
-    public void enviarMensajeUnirsePartida(String nombre){
-        client.mandarMensaje(new MensajeUnirse(nombre));
+    public boolean partidaEmpezada(){
+        return partidaEmpezada;
     }
     
     public void agregarMovimiento(MensajeMovimiento mensajeMovimiento){
         if (partidaEmpezada) {
             listaMensajes.add(mensajeMovimiento);
         }
-    }
-    
-    public void resetContextoPartia(){
-        instance = null;
     }
 }
