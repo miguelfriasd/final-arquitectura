@@ -7,7 +7,6 @@ package Servidor;
 import Modelo.Jugador;
 import Logica.ControlPartida;
 import Mensaje.MensajeMovimiento;
-import Mensaje.MensajeSalir;
 import Mensaje.MensajeStrategy;
 import Mensaje.MensajeUnirse;
 import java.io.IOException;
@@ -17,7 +16,6 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
