@@ -4,7 +4,9 @@
  */
 package Cliente;
 
+import ContextoLocalPartida.ContextoLocalPartida;
 import Mensaje.MensajeMovimiento;
+import Mensaje.MensajePartidaEmpezada;
 import Mensaje.MensajeStrategy;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -21,16 +23,17 @@ public class Client {
     private Socket socket;
     private ObjectInputStream inputStream;
     private ObjectOutputStream outputStream;
+    private ContextoLocalPartida contextoLocalPartida;
 
     public Client(Socket socket) {
         try {
             this.socket = socket;
             this.outputStream = new ObjectOutputStream(socket.getOutputStream());
             this.inputStream = new ObjectInputStream(socket.getInputStream());
+            this.contextoLocalPartida = new ContextoLocalPartida();
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
     }
     
     public void mandarMensaje(MensajeStrategy mensaje){
@@ -44,24 +47,37 @@ public class Client {
     
     public void listenerMensajes(){
         new Thread(new Runnable() {
-                
                 @Override
                 public void run() {
-                    while (socket.isConnected()) {                        
+                    while (socket.isConnected() && !contextoLocalPartida.partidaEmpezada()) { 
+                        MensajeStrategy mensaje;
                         try {
-                           MensajeStrategy mensaje = (MensajeStrategy)inputStream.readObject();
-                            if (mensaje instanceof MensajeMovimiento) {
-                                
-                            }
-                            else if (true) {
-                                
-                            }
+                            mensaje = (MensajeStrategy)inputStream.readObject();
+                            if (mensaje instanceof MensajePartidaEmpezada) {
+                                contextoLocalPartida.setPartidaEmpezada();
+                            }                            
                         } catch (IOException | ClassNotFoundException ex) {
-                            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                            cerrarTodo();
                         }
                     }
+                    while (socket.isConnected() && contextoLocalPartida.partidaEmpezada()) { 
+                        MensajeStrategy mensaje;
+                        try {
+                            mensaje = (MensajeStrategy)inputStream.readObject();
+                            if (mensaje instanceof MensajePartidaEmpezada) {
+                                contextoLocalPartida.setPartidaEmpezada();
+                            }                            
+                        } catch (IOException | ClassNotFoundException ex) {
+                            cerrarTodo();
+                        }
+                    }
+                    cerrarTodo();
                 }
         }).start();
+    }
+
+    public ContextoLocalPartida getContextoLocalPartida() {
+        return contextoLocalPartida;
     }
     
     private void cerrarTodo(){

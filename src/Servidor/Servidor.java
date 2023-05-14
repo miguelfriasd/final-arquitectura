@@ -16,18 +16,14 @@ import java.util.List;
  *
  * @author mig_2
  */
-public class ServidorThread implements Runnable{
+public class Servidor{
     
     private final ServerSocket socketServidor;
     private final ControlPartida controlPartida;
-    private List<ClientHandler> listaClientes;
 
-    public ServidorThread(ServerSocket serverSocket, Socket socket) {
+    public Servidor(ServerSocket serverSocket) {
         this.socketServidor = serverSocket;
         this.controlPartida = new ControlPartida();
-        ClientHandler clientHandler = new ClientHandler(socket, controlPartida);
-        Thread thread = new Thread(clientHandler);
-        thread.start();
     }
     
     public void arrancarServidor(){
@@ -52,10 +48,5 @@ public class ServidorThread implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void run() {
-        arrancarServidor();
     }
 }

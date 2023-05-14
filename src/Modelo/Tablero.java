@@ -4,11 +4,13 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author mig_2
  */
-public class Tablero {
+public class Tablero implements Serializable{
     private final int numFilas;
     private final int numCols;
     private final Cuadro[][] tablero;

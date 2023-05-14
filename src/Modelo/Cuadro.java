@@ -4,11 +4,13 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author mig_2
  */
-public class Cuadro {
+public class Cuadro implements Serializable{
     boolean arriba;
     boolean abajo;
     boolean izquierda;
