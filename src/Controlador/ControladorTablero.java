@@ -33,7 +33,10 @@ public class ControladorTablero implements IObserver{
         Partida partida = cliente.getContextoLocalPartida().getEstadoPartida();
         frmTablero.actualizarTablero(new PnlTablero(partida.getTablero()));
         frmTablero.setTurno(partida.getJugadorActual().getNombre());
-        System.out.println("Tablero actualizada");
+        frmTablero.setNombreJugador1(partida.getJugador(0).getNombre());
+        frmTablero.setNombreJugador2(partida.getJugador(1).getNombre());
+        frmTablero.setScoreJugador1(String.valueOf(partida.getJugador(0).getScore()));
+        frmTablero.setScoreJugador2(String.valueOf(partida.getJugador(1).getScore()));
     }
     
     class RealizarMovimientoListener implements ActionListener{

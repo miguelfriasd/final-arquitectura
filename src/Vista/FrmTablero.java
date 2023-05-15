@@ -37,7 +37,7 @@ public class FrmTablero extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel8 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        PnlFondo = new javax.swing.JPanel();
         panelTablero = new JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtX = new javax.swing.JTextField();
@@ -49,16 +49,20 @@ public class FrmTablero extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtJugador1 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        dospuntos2 = new javax.swing.JLabel();
+        lblJugador2 = new javax.swing.JLabel();
         lblTurno = new javax.swing.JLabel();
+        lblJugador1 = new javax.swing.JLabel();
+        dospuntos1 = new javax.swing.JLabel();
+        lblScoreJugador1 = new javax.swing.JLabel();
+        lblScoreJugador2 = new javax.swing.JLabel();
 
         jLabel8.setText("txtxjugador1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 102));
+        PnlFondo.setBackground(new java.awt.Color(0, 51, 102));
 
         panelTablero.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -119,105 +123,140 @@ public class FrmTablero extends javax.swing.JFrame {
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/gatito2.png"))); // NOI18N
 
-        txtJugador1.setBackground(new java.awt.Color(255, 255, 255));
-        txtJugador1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        txtJugador1.setForeground(new java.awt.Color(255, 255, 255));
-        txtJugador1.setText("txtxJugador1");
+        dospuntos2.setBackground(new java.awt.Color(255, 255, 255));
+        dospuntos2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        dospuntos2.setForeground(new java.awt.Color(255, 255, 255));
+        dospuntos2.setText(":");
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("txtJugador2");
+        lblJugador2.setBackground(new java.awt.Color(255, 255, 255));
+        lblJugador2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblJugador2.setForeground(new java.awt.Color(255, 255, 255));
+        lblJugador2.setText("Jugador2");
 
         lblTurno.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblTurno.setForeground(new java.awt.Color(255, 255, 255));
         lblTurno.setText("Turno");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        lblJugador1.setBackground(new java.awt.Color(255, 255, 255));
+        lblJugador1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblJugador1.setForeground(new java.awt.Color(255, 255, 255));
+        lblJugador1.setText("Jugador1");
+
+        dospuntos1.setBackground(new java.awt.Color(255, 255, 255));
+        dospuntos1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        dospuntos1.setForeground(new java.awt.Color(255, 255, 255));
+        dospuntos1.setText(":");
+
+        lblScoreJugador1.setBackground(new java.awt.Color(255, 255, 255));
+        lblScoreJugador1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblScoreJugador1.setForeground(new java.awt.Color(255, 255, 255));
+        lblScoreJugador1.setText("0");
+
+        lblScoreJugador2.setBackground(new java.awt.Color(255, 255, 255));
+        lblScoreJugador2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblScoreJugador2.setForeground(new java.awt.Color(255, 255, 255));
+        lblScoreJugador2.setText("0");
+
+        javax.swing.GroupLayout PnlFondoLayout = new javax.swing.GroupLayout(PnlFondo);
+        PnlFondo.setLayout(PnlFondoLayout);
+        PnlFondoLayout.setHorizontalGroup(
+            PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PnlFondoLayout.createSequentialGroup()
+                .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnlFondoLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtX))
                         .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtY)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboBoxPosicion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
                         .addComponent(btnMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(panelTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtJugador1)
-                            .addComponent(jLabel9)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(PnlFondoLayout.createSequentialGroup()
                         .addGap(261, 261, 261)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(lblTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PnlFondoLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(panelTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PnlFondoLayout.createSequentialGroup()
+                                .addComponent(lblJugador2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dospuntos2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblScoreJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PnlFondoLayout.createSequentialGroup()
+                                .addComponent(lblJugador1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dospuntos1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblScoreJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        PnlFondoLayout.setVerticalGroup(
+            PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PnlFondoLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTurno))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnlFondoLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(panelTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(170, 170, 170)
-                                .addComponent(jLabel7))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtJugador1)
-                                .addGap(14, 14, 14)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(PnlFondoLayout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addGroup(PnlFondoLayout.createSequentialGroup()
+                                .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblJugador1)
+                                    .addComponent(dospuntos1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblScoreJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(5, 5, 5)))
+                        .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PnlFondoLayout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addComponent(jLabel6))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(jLabel9)))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlFondoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblJugador2)
+                                    .addComponent(dospuntos2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblScoreJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(15, 15, 15)))))
+                .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnlFondoLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtX, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtY, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboBoxPosicion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(PnlFondoLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(btnMovimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 680));
+        getContentPane().add(PnlFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1020, 680));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -260,10 +299,29 @@ public class FrmTablero extends javax.swing.JFrame {
     public void setTurno(String nombre){
         lblTurno.setText(nombre);
     }
+    
+    public void setNombreJugador1(String nombre){
+        lblJugador1.setText(nombre);
+    }
+    
+    public void setNombreJugador2(String nombre){
+        lblJugador2.setText(nombre);
+    }    
+    
+    public void setScoreJugador1(String score){
+        lblScoreJugador1.setText(score);
+    }
+    
+    public void setScoreJugador2(String score){
+        lblScoreJugador2.setText(score);
+    }    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PnlFondo;
     private javax.swing.JButton btnMovimiento;
     private javax.swing.JComboBox<String> comboBoxPosicion;
+    private javax.swing.JLabel dospuntos1;
+    private javax.swing.JLabel dospuntos2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -271,11 +329,12 @@ public class FrmTablero extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblJugador1;
+    private javax.swing.JLabel lblJugador2;
+    private javax.swing.JLabel lblScoreJugador1;
+    private javax.swing.JLabel lblScoreJugador2;
     private javax.swing.JLabel lblTurno;
     private javax.swing.JPanel panelTablero;
-    private javax.swing.JLabel txtJugador1;
     private javax.swing.JTextField txtX;
     private javax.swing.JTextField txtY;
     // End of variables declaration//GEN-END:variables

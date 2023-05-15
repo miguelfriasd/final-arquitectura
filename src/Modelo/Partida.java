@@ -161,6 +161,10 @@ public class Partida implements Serializable{
         return movimientoValido;
     }
     
+    public Jugador getJugador(int index){
+        return listaJugadores.get(index);
+    }
+    
     public Jugador getJugadorActual(){
         return listaJugadores.get(jugadorActual);
     }
