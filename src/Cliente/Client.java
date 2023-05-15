@@ -5,6 +5,7 @@
 package Cliente;
 
 import ContextoLocalPartida.ContextoLocalPartida;
+import Mensaje.MensajeContextoPartida;
 import Mensaje.MensajeMovimiento;
 import Mensaje.MensajePartidaEmpezada;
 import Mensaje.MensajeStrategy;
@@ -40,6 +41,7 @@ public class Client {
         try {
             outputStream.writeObject(mensaje);
             outputStream.flush();
+            outputStream.reset();
         } catch (IOException ex) {
             cerrarTodo();
         }  
@@ -60,11 +62,16 @@ public class Client {
                             cerrarTodo();
                         }
                     }
+                    System.out.println("Partida Empezada");
                     while (socket.isConnected() && contextoLocalPartida.partidaEmpezada()) { 
+                        
                         MensajeStrategy mensaje;
                         try {
                             mensaje = (MensajeStrategy)inputStream.readObject();
-                            if (mensaje instanceof MensajePartidaEmpezada) {
+                            if (mensaje instanceof MensajeContextoPartida) {
+                                ((MensajeContextoPartida) mensaje).getPartida().imprimirTablero();
+                            }
+                            else if (mensaje instanceof MensajePartidaEmpezada) {
                                 contextoLocalPartida.setPartidaEmpezada();
                             }                            
                         } catch (IOException | ClassNotFoundException ex) {
@@ -78,6 +85,10 @@ public class Client {
 
     public ContextoLocalPartida getContextoLocalPartida() {
         return contextoLocalPartida;
+    }
+    
+    public boolean isConnected(){
+        return socket.isConnected();
     }
     
     private void cerrarTodo(){

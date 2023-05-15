@@ -7,6 +7,7 @@ package Controlador;
 import Cliente.Client;
 import ContextoLocalPartida.ContextoLocalPartida;
 import Mensaje.MensajeUnirse;
+import Vista.FrmTablero;
 import Vista.FrmUnirsePartida;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +22,6 @@ import java.net.Socket;
 public class ControladorUnirsePartida {
     
     FrmUnirsePartida frmUnirsePartida;
-    private Client client;
     
 
     public ControladorUnirsePartida(FrmUnirsePartida frmUnirsePartida) {
@@ -34,20 +34,38 @@ public class ControladorUnirsePartida {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            
+            Thread hilo = new Thread(new Runnable() {
 
-            String codigoPartida;
-            String nombre;
+                @Override
+                public void run() {
+                    String codigoPartida;
+                    String nombre;
+                    frmUnirsePartida.desactivarBotonUnirse();
+                    frmUnirsePartida.desactivarCamposTexto();
+                    frmUnirsePartida.setTextEstadoPartida("Intentando unirse a la partida....");
 
-            try{
-                codigoPartida = frmUnirsePartida.getCodigoPartida();
-                nombre = frmUnirsePartida.getNombre();
-                Client cliente = new Client(new Socket("localhost", Integer.parseInt(codigoPartida)));
-                cliente.mandarMensaje(new MensajeUnirse(nombre));
-            } catch (IOException ex ) {
-                frmUnirsePartida.mostrarMensajeError(ex.getMessage());
-            }
-
+                    try{
+                        codigoPartida = frmUnirsePartida.getCodigoPartida();
+                        nombre = frmUnirsePartida.getNombre();
+                        Client cliente = new Client(new Socket("localhost", Integer.parseInt(codigoPartida)));
+                        cliente.listenerMensajes();
+                        cliente.mandarMensaje(new MensajeUnirse(nombre));
+                        while (cliente.isConnected() && !cliente.getContextoLocalPartida().partidaEmpezada()) {
+                            System.out.println("Esperando partida");
+                        }
+                        if (cliente.getContextoLocalPartida().partidaEmpezada()) {
+                            frmUnirsePartida.dispose();
+                            FrmTablero frmTablero = new FrmTablero();
+                            frmTablero.setVisible(true);
+                            ControladorTablero controladorTablero = new ControladorTablero(cliente, frmTablero);
+                        }
+                    } catch (IOException ex ) {
+                        frmUnirsePartida.mostrarMensajeError(ex.getMessage());
+                    }
+                }
+            });         
+            hilo.start();
         }
-
     }    
 }

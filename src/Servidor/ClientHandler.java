@@ -6,7 +6,9 @@ package Servidor;
 
 import Modelo.Jugador;
 import Logica.ControlPartida;
+import Mensaje.MensajeContextoPartida;
 import Mensaje.MensajeMovimiento;
+import Mensaje.MensajePartidaEmpezada;
 import Mensaje.MensajeStrategy;
 import Mensaje.MensajeUnirse;
 import java.io.IOException;
@@ -63,27 +65,20 @@ public class ClientHandler implements Runnable, IObserver{
             }
         }
         
-        synchronized (this) {          
-            if (!controlPartida.partidaEmpezada()) {
-                try {
-                    wait();
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            else{
-                notifyAll();            
-            }
+        while (!controlPartida.partidaEmpezada()) {            
         }
+        enviarMensajePartidaEmpezada();
+        
         
         while (socket.isConnected() && controlPartida.partidaEmpezada()) {
             MensajeStrategy mensaje;
             try {
                 mensaje = (MensajeStrategy)inputStream.readObject();
-                if (mensaje instanceof MensajeMovimiento && controlPartida.obtenerJugadorActual() == this.jugador) {
-                    int coordenadaX = Integer.parseInt(mensaje.obtenerValor("coordenadaX"));
-                    int coordenadaY = Integer.parseInt(mensaje.obtenerValor("coordenadaY"));
-                    String posicion = mensaje.obtenerValor("posicion");
+                if (mensaje instanceof MensajeMovimiento) {
+                    MensajeMovimiento mensajeMovimiento = (MensajeMovimiento)mensaje;
+                    int coordenadaX = Integer.parseInt(mensajeMovimiento.obtenerValor("coordenadaX"));
+                    int coordenadaY = Integer.parseInt(mensajeMovimiento.obtenerValor("coordenadaY"));
+                    String posicion = mensajeMovimiento.obtenerValor("posicion");
                     controlPartida.realizarMovimiento(coordenadaX, coordenadaY, posicion, jugador);
                 }                            
             } catch (IOException | ClassNotFoundException ex) {
@@ -98,6 +93,7 @@ public class ClientHandler implements Runnable, IObserver{
             try {
                 clientHandler.outputStream.writeObject(mensaje);
                 clientHandler.outputStream.flush();
+                outputStream.reset();
             } catch (IOException ex) {
                 cerrarTodo();
             }
@@ -132,14 +128,27 @@ public class ClientHandler implements Runnable, IObserver{
         jugador = new Jugador(nombreJugador, ipJugador); 
         controlPartida.agregarJugador(jugador);
     }
-
-    @Override
-    public void update(String value) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    private void enviarMensajePartidaEmpezada(){
+        try {
+            outputStream.writeObject(new MensajePartidaEmpezada());
+            outputStream.writeObject(new MensajeContextoPartida(controlPartida.getPartida()));
+            outputStream.flush();
+            outputStream.reset();
+        } catch (IOException ex) {
+           cerrarTodo();
+        }
     }
 
     @Override
-    public void delete() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void actualizar() {
+        try {
+            outputStream.writeObject(new MensajeContextoPartida(controlPartida.getPartida()));
+            outputStream.flush();
+            outputStream.reset();
+        } catch (IOException ex) {
+            cerrarTodo();
+        }
     }
+
 }

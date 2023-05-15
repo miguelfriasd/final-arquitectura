@@ -16,8 +16,8 @@ public class MensajeMovimiento implements MensajeStrategy, Serializable{
     
     public MensajeMovimiento(String coordenadaX, String coordenadaY, String posicion) {
         mensaje = new HashMap<>();
-        mensaje.put("x", coordenadaX);
-        mensaje.put("y", coordenadaY);
+        mensaje.put("coordenadaX", coordenadaX);
+        mensaje.put("coordenadaY", coordenadaY);
         mensaje.put("posicion", posicion);
     }
 

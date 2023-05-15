@@ -7,6 +7,7 @@ package ContextoLocalPartida;
 import Cliente.Client;
 import Mensaje.MensajeMovimiento;
 import Mensaje.MensajeUnirse;
+import Modelo.Partida;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.LinkedList;
@@ -18,6 +19,7 @@ import java.util.List;
  */
 public class ContextoLocalPartida {
     private List<MensajeMovimiento> listaMensajes;
+    private Partida estadoPartida;
     private boolean partidaEmpezada;
     
     public ContextoLocalPartida(){
@@ -37,5 +39,13 @@ public class ContextoLocalPartida {
         if (partidaEmpezada) {
             listaMensajes.add(mensajeMovimiento);
         }
+    }
+    
+    public void actualizarEstadoPartida(Partida partida){
+        this.estadoPartida = partida;
+    }
+    
+    public Partida getEstadoPartida(){
+        return estadoPartida;
     }
 }

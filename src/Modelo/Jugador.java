@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.util.Objects;
 
@@ -11,13 +12,15 @@ import java.util.Objects;
  *
  * @author mig_2
  */
-public class Jugador {
+public class Jugador implements Serializable{
     String nombre;
     InetAddress ip;
+    int score;
 
     public Jugador(String nombre, InetAddress ip) {
         this.nombre = nombre;
         this.ip = ip;
+        this.score = 0;
     }
 
     public String getNombre() {
@@ -36,6 +39,13 @@ public class Jugador {
         this.ip = ip;
     }
     
+    public void aumentarScore(){
+        score++;
+    }
+
+    public int getScore() {
+        return score;
+    }
     
 
     @Override
@@ -57,8 +67,6 @@ public class Jugador {
             return false;
         }
         final Jugador other = (Jugador) obj;
-        return Objects.equals(this.ip, other.ip);
+        return Objects.equals(this.nombre, other.nombre);
     }
-    
-    
 }

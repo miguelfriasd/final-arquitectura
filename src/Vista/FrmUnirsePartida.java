@@ -34,6 +34,7 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
         btnUnirse = new javax.swing.JButton();
         txtNombre = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
+        txtEstadoPartida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,22 +50,24 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(93, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblNombre)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblCodigoPartida)
-                        .addComponent(txtCodigoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUnirse)
-                            .addGap(78, 78, 78))))
+                    .addComponent(txtNombre)
+                    .addComponent(lblCodigoPartida)
+                    .addComponent(txtCodigoPartida)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUnirse)
+                        .addGap(78, 78, 78))
+                    .addComponent(txtEstadoPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(87, 87, 87))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
+                .addComponent(txtEstadoPartida, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -95,12 +98,25 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
         public void mostrarMensajeError(String mensaje){	
             JOptionPane.showMessageDialog(this, mensaje);
 	}
+        
+        public void setTextEstadoPartida(String texto){
+            txtEstadoPartida.setText(texto);
+        }
+        
+        public void desactivarBotonUnirse(){
+            btnUnirse.setEnabled(false);   
+        }
+        public void desactivarCamposTexto(){
+            txtNombre.setEnabled(false);
+            txtCodigoPartida.setEnabled(false);
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUnirse;
     private javax.swing.JLabel lblCodigoPartida;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtCodigoPartida;
+    private javax.swing.JLabel txtEstadoPartida;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

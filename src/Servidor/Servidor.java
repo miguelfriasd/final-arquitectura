@@ -31,6 +31,7 @@ public class Servidor{
             while (!controlPartida.partidaLlena() && !controlPartida.partidaEmpezada()){
                 Socket socket = socketServidor.accept();
                 ClientHandler clientHandler = new ClientHandler(socket,controlPartida);
+                controlPartida.registrarObserver(clientHandler);
                 Thread thread = new Thread(clientHandler);
                 thread.start();
             }

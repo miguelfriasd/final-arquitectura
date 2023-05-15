@@ -15,7 +15,6 @@ public class Cuadro implements Serializable{
     boolean abajo;
     boolean izquierda;
     boolean derecha;
-    int dueño = 0;
     
     Cuadro() {
         arriba = false;
