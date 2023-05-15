@@ -69,7 +69,9 @@ public class Client {
                         try {
                             mensaje = (MensajeStrategy)inputStream.readObject();
                             if (mensaje instanceof MensajeContextoPartida) {
-                                ((MensajeContextoPartida) mensaje).getPartida().imprimirTablero();
+                                MensajeContextoPartida cp = (MensajeContextoPartida) mensaje;
+                                contextoLocalPartida.actualizarEstadoPartida(cp.getPartida());
+                                cp.getPartida().imprimirTablero();
                             }
                             else if (mensaje instanceof MensajePartidaEmpezada) {
                                 contextoLocalPartida.setPartidaEmpezada();

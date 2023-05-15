@@ -161,8 +161,12 @@ public class Partida implements Serializable{
         return movimientoValido;
     }
     
-    private Jugador getJugadorActual(){
+    public Jugador getJugadorActual(){
         return listaJugadores.get(jugadorActual);
+    }
+    
+    public Cuadro[][] getTablero(){
+        return tablero;
     }
     
     private void agregarPunto(){

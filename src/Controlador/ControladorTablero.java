@@ -6,6 +6,9 @@ package Controlador;
 
 import Cliente.Client;
 import Mensaje.MensajeMovimiento;
+import Modelo.Partida;
+import Servidor.IObserver;
+import Vista.PnlTablero;
 import Vista.FrmTablero;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +17,7 @@ import java.awt.event.ActionListener;
  *
  * @author mig_2
  */
-public class ControladorTablero {
+public class ControladorTablero implements IObserver{
     Client cliente;
     FrmTablero frmTablero;;
 
@@ -23,6 +26,14 @@ public class ControladorTablero {
         this.frmTablero = frmTablero;
         
         this.frmTablero.agregarRealizarMovimientoListener(new RealizarMovimientoListener());
+    }
+
+    @Override
+    public void actualizar() {
+        Partida partida = cliente.getContextoLocalPartida().getEstadoPartida();
+        frmTablero.actualizarTablero(new PnlTablero(partida.getTablero()));
+        frmTablero.setTurno(partida.getJugadorActual().getNombre());
+        System.out.println("Tablero actualizada");
     }
     
     class RealizarMovimientoListener implements ActionListener{

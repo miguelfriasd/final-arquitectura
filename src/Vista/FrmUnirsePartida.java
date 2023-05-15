@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
  * @author mig_2
  */
 public class FrmUnirsePartida extends javax.swing.JFrame {
+
     /**
      * Creates new form FrmUnirsePartida
      */
@@ -30,89 +32,149 @@ public class FrmUnirsePartida extends javax.swing.JFrame {
     private void initComponents() {
 
         txtCodigoPartida = new javax.swing.JTextField();
-        lblCodigoPartida = new javax.swing.JLabel();
         btnUnirse = new javax.swing.JButton();
         txtNombre = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
+        lblCodigoPartida = new javax.swing.JLabel();
         txtEstadoPartida = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblCodigoPartida.setText("Codigo de partida:");
+        txtCodigoPartida.setForeground(new java.awt.Color(153, 153, 153));
+        txtCodigoPartida.setText("Ingrese su codigo aqui");
+        txtCodigoPartida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtCodigoPartidaMousePressed(evt);
+            }
+        });
+        getContentPane().add(txtCodigoPartida, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 220, 36));
 
+        btnUnirse.setBackground(new java.awt.Color(0, 102, 153));
+        btnUnirse.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnUnirse.setForeground(new java.awt.Color(255, 255, 255));
         btnUnirse.setText("Unirse");
+        getContentPane().add(btnUnirse, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 90, 30));
 
+        txtNombre.setForeground(new java.awt.Color(153, 153, 153));
+        txtNombre.setText("Ingrese su nombre aqui");
+        txtNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtNombreMousePressed(evt);
+            }
+        });
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 220, 36));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Media/miniTimbi.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(0, 51, 102));
+
+        lblNombre.setBackground(new java.awt.Color(255, 255, 255));
+        lblNombre.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(204, 255, 255));
         lblNombre.setText("Nombre");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblNombre)
-                    .addComponent(txtNombre)
-                    .addComponent(lblCodigoPartida)
-                    .addComponent(txtCodigoPartida)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnUnirse)
-                        .addGap(78, 78, 78))
-                    .addComponent(txtEstadoPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(87, 87, 87))
+        lblCodigoPartida.setBackground(new java.awt.Color(255, 255, 255));
+        lblCodigoPartida.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblCodigoPartida.setForeground(new java.awt.Color(255, 255, 255));
+        lblCodigoPartida.setText("Codigo de partida:");
+
+        txtEstadoPartida.setBackground(new java.awt.Color(255, 255, 255));
+        txtEstadoPartida.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        txtEstadoPartida.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCodigoPartida)
+                            .addComponent(lblNombre)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(txtEstadoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(txtEstadoPartida, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(122, 122, 122)
                 .addComponent(lblNombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(62, 62, 62)
                 .addComponent(lblCodigoPartida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCodigoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnUnirse)
-                .addGap(48, 48, 48))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addComponent(txtEstadoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59))
         );
 
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 480));
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
-        public String getCodigoPartida(){
-            return txtCodigoPartida.getText();
+
+    private void txtNombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMousePressed
+        if (txtNombre.getText().equals("Ingrese su nombre aqui")) {
+            txtNombre.setText("");
+            txtNombre.setForeground(Color.black);
         }
-        
-        public String getNombre(){
-            return txtNombre.getText();
+        if (String.valueOf(txtCodigoPartida.getText()).isEmpty()) {
+            txtCodigoPartida.setText("Ingrese su codigo aqui");
+            txtCodigoPartida.setForeground(new Color(204, 204, 204));
         }
-    
-    	public void agregarUnirsePartidaListener(ActionListener listenUnirsePartida){
-            btnUnirse.addActionListener(listenUnirsePartida);
-	}
-        
-        public void mostrarMensajeError(String mensaje){	
-            JOptionPane.showMessageDialog(this, mensaje);
-	}
-        
-        public void setTextEstadoPartida(String texto){
-            txtEstadoPartida.setText(texto);
+    }//GEN-LAST:event_txtNombreMousePressed
+
+    private void txtCodigoPartidaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCodigoPartidaMousePressed
+        if (txtCodigoPartida.getText().equals("Ingrese su codigo aqui")) {
+            txtCodigoPartida.setText("");
+            txtCodigoPartida.setForeground(Color.black);
         }
-        
-        public void desactivarBotonUnirse(){
-            btnUnirse.setEnabled(false);   
+        if (String.valueOf(txtNombre.getText()).isEmpty()) {
+            txtNombre.setText("Ingrese su nombre aqui");
+            txtNombre.setForeground(new Color(204, 204, 204));
         }
-        public void desactivarCamposTexto(){
-            txtNombre.setEnabled(false);
-            txtCodigoPartida.setEnabled(false);
-        }
+    }//GEN-LAST:event_txtCodigoPartidaMousePressed
+
+    public String getCodigoPartida() {
+        return txtCodigoPartida.getText();
+    }
+
+    public String getNombre() {
+        return txtNombre.getText();
+    }
+
+    public void agregarUnirsePartidaListener(ActionListener listenUnirsePartida) {
+        btnUnirse.addActionListener(listenUnirsePartida);
+    }
+
+    public void mostrarMensajeError(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    public void setTextEstadoPartida(String texto) {
+        txtEstadoPartida.setText(texto);
+    }
+
+    public void desactivarBotonUnirse() {
+        btnUnirse.setEnabled(false);
+    }
+
+    public void desactivarCamposTexto() {
+        txtNombre.setEnabled(false);
+        txtCodigoPartida.setEnabled(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUnirse;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCodigoPartida;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtCodigoPartida;

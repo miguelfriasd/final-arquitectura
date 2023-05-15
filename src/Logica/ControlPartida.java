@@ -63,7 +63,7 @@ public class ControlPartida implements IObservable{
     
     private boolean empezarPartida(){
         if (!partidaEmpezada && (numJugadoresActual > 0)) {
-            partida = new Partida(numJugadoresActual*10 , numJugadoresActual*10, this.listaJugadores);
+            partida = new Partida(5 , 5, this.listaJugadores);
             partidaEmpezada = true;
             return true;
         }

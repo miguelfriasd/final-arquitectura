@@ -59,6 +59,7 @@ public class ControladorUnirsePartida {
                             FrmTablero frmTablero = new FrmTablero();
                             frmTablero.setVisible(true);
                             ControladorTablero controladorTablero = new ControladorTablero(cliente, frmTablero);
+                            cliente.getContextoLocalPartida().registrarObserver(controladorTablero);
                         }
                     } catch (IOException ex ) {
                         frmUnirsePartida.mostrarMensajeError(ex.getMessage());

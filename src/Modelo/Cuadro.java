@@ -11,12 +11,12 @@ import java.io.Serializable;
  * @author mig_2
  */
 public class Cuadro implements Serializable{
-    boolean arriba;
-    boolean abajo;
-    boolean izquierda;
-    boolean derecha;
+    public boolean arriba;
+    public boolean abajo;
+    public boolean izquierda;
+    public boolean derecha;
     
-    Cuadro() {
+    public Cuadro() {
         arriba = false;
         abajo = false;
         izquierda = false;
